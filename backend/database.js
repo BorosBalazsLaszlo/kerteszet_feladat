@@ -31,3 +31,5 @@ function DbRun(sql, params) {
     });
   });
 }
+
+export {DbQuery, DbInit, DbRun, db};
