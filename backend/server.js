@@ -7,7 +7,7 @@ import { DbInit } from "./database.js";
 const app = express();
 const PORT = 3000;
 
-app.use(bodyParser.json);
+app.use(bodyParser.json());
 app.use(cors());
 app.use("/api", novenyRoute);
 
@@ -15,7 +15,7 @@ const startServer = async () => {
   try {
     await DbInit();
     app.listen(PORT, () => {
-      console.log(`A szerver fut a https://localhost${PORT} címen.`);
+      console.log(`A szerver fut a http://localhost:${PORT} címen.`);
     });
   } catch (err) {
     console.log(err);
