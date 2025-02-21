@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Plant } from '../types/Plant';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../api/api';
+import '../css/main.css';
 
 function AllPlants() {
     const [plants, setPlants] = useState<Plant[]>([]);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Plant } from '../types/Plant';
 import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from '../api/api';
+import '../css/main.css';
 
 const SinglePlant: React.FC = () => {
 
