@@ -73,7 +73,7 @@ router.put("/novenyek/:id", async (req, res) => {
 router.delete("/novenyek/:id", async (req, res) => {
   const novenyId = req.params.id;
   try {
-    await DbRun("DELETE FROM Cars WHERE id = ?", [novenyId]);
+    await DbRun("DELETE FROM Novenyek WHERE id = ?", [novenyId]);
     res.json({ message: "Sikeres törlés!" });
   } catch (err) {
     res.status(500).json({ message: err.message });
