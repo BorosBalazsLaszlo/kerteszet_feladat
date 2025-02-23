@@ -5,51 +5,45 @@ import apiClient from '../api/api';
 import '../css/main.css';
 
 const SinglePlant: React.FC = () => {
-
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
-
     const [plant, setPlant] = useState<Plant | null>(null);
+    const [ar, setAr] = useState<number>(0);
 
-    const [kategoria, setKategoria] = useState("");
-
-    useEffect(() =>{
-        const fetchPlant = async () =>{
-            try{
-               const response = await apiClient.get(`/novenyek/${id}`);
-               setPlant(response.data);
-               setKategoria(response.data.kategoria);
-            } catch (err: any)
-            {
-                alert("Hiba a fetchelésnél: " + err);
+    useEffect(() => {
+        const fetchPlant = async () => {
+            try {
+                const response = await apiClient.get(`/novenyek/${id}`);
+                setPlant(response.data);
+                setAr(response.data.ar);
+            } catch (err: any) {
+                alert('Hiba a fetchelésnél: ' + err);
             }
-        }
+        };
         fetchPlant();
     }, [id]);
 
-    const updateCategory = async () =>{
-
-        const updatedPlant ={
+    const updatePrice = async () => {
+        const updatedPlant = {
             ...plant,
-            kategoria: kategoria
+            ar: ar,
         } as Plant;
-        try{
+
+        try {
             await apiClient.put(`/novenyek/${id}`, updatedPlant);
-            alert("Sikeres frissítés!");
-        } catch (err: any)
-        {
-            alert("Hiba a frissítésnél: "  + err);
+            alert('Sikeres frissítés!');
+        } catch (err: any) {
+            alert('Hiba a frissítésnél: ' + err);
         }
     };
 
     const deletePlant = async () => {
-        try{
+        try {
             await apiClient.delete(`/novenyek/${id}`);
-            alert("Sikeres törlés!");
-            navigate("/novenyek");
-        } catch (err: any)
-        {
-            alert("Hiba a törlésnél: " + err);
+            alert('Sikeres törlés!');
+            navigate('/novenyek');
+        } catch (err: any) {
+            alert('Hiba a törlésnél: ' + err);
         }
     };
 
@@ -57,18 +51,19 @@ const SinglePlant: React.FC = () => {
         <div>
             <h1>Növény {id}</h1>
 
-            <div className='single-container'>
+            <div className="single-container">
                 <p>Név: {plant?.nev}</p>
-                <p>Ár: {plant?.ar}Ft</p>
-                <p>Évelő?: {plant?.evelo}</p>
-                <input type="text" placeholder={kategoria} onChange={(e) => setKategoria(e.target.value)} />
-                <button onClick={updateCategory}>
-                    Frissít
-                </button>
+                <p>Évelő?: {plant?.evelo ? 'Igen' : 'Nem'}</p>
+                <p>Kategória: {plant?.kategoria}</p>
+                <input
+                    type="number"
+                    placeholder="Új ár"
+                    value={ar}
+                    onChange={(e) => setAr(Number(e.target.value))}
+                />
+                <button onClick={updatePrice}>Frissít</button>
                 <div>
-                    <button onClick={deletePlant}>
-                        Törlés
-                    </button>
+                    <button onClick={deletePlant}>Törlés</button>
                 </div>
             </div>
         </div>

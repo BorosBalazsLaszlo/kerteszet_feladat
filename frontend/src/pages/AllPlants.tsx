@@ -8,8 +8,8 @@ function AllPlants() {
     const [plants, setPlants] = useState<Plant[]>([]);
     const [nev, setNev] = useState('');
     const [ar, setAr] = useState(0);
-    const [kategoria, setKategoria] = useState('');
-    const [evelo, setEvelo] = useState(0);
+    const [kategoria, setKategoria] = useState('Fa');
+    const [evelo, setEvelo] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function AllPlants() {
             nev,
             ar,
             kategoria,
-            evelo,
+            evelo: evelo ? 1 : 0,
         } as Plant;
 
         try {
@@ -81,16 +81,15 @@ function AllPlants() {
                         placeholder="Ár"
                         onChange={(e) => setAr(Number(e.target.value))}
                     />
-                    <input
-                        type="text"
-                        placeholder="Kategória"
-                        onChange={(e) => setKategoria(e.target.value)}
-                    />
-                    <input
-                        type="number"
-                        placeholder="Évelő? (0 nem, 1 igen)"
-                        onChange={(e) => setEvelo(Number(e.target.value))}
-                    />
+                    <select onChange={(e) => setKategoria(e.target.value)}>
+                        <option value="Fa">Fa</option>
+                        <option value="Virág">Virág</option>
+                        <option value="Bokor">Bokor</option>
+                    </select>
+                    <label>
+                        Évelő?
+                        <input type="checkbox" onChange={(e) => setEvelo(e.target.checked)} />
+                    </label>
                 </div>
                 <button onClick={postPlant}>Hozzáad</button>
             </div>
