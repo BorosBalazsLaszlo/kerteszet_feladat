@@ -1,77 +1,81 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-}
-
-.all-plants {
     padding: 20px;
 }
 
-.all-plants h1 {
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
     color: #333;
 }
 
-.all-plants table {
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.all-plants table, .all-plants th, .all-plants td {
-    border: 1px solid #ddd;
+table,
+th,
+td {
+    border: 1px solid #dddddd;
+    background-color: #f5f9ff;
 }
 
-.all-plants th, .all-plants td {
-    padding: 8px;
-    text-align: left;
+th,
+td {
+    padding: 10px;
+    text-align: center;
 }
 
-.all-plants th {
-    background-color: #f2f2f2;
+th {
+    background-color: #ebebeb;
 }
 
-.all-plants button {
-    background-color: #4CAF50;
+button {
+    background-color: #4caf50;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-.all-plants button:hover {
+button:hover {
     background-color: #45a049;
 }
 
-.single-plant {
-    padding: 20px;
+.form-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
 }
 
-.single-plant h1 {
-    color: #333;
-}
-
-.single-plant p {
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-.single-plant input {
+input {
+    width: 200px;
     padding: 10px;
     margin: 10px 0;
-    width: 100%;
-    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px;
 }
 
-.single-plant button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
-.single-plant button:hover {
-    background-color: #45a049;
+.single-container {
+    border-radius: 30px;
+    background-color: #ffffff;
+    display: inline-block;
+    padding: 50px;
+    box-shadow: 0px 8px 8px grey;
 }

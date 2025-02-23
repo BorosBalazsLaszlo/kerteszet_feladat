@@ -57,10 +57,10 @@ const SinglePlant: React.FC = () => {
         <div>
             <h1>Növény {id}</h1>
 
-            <div>
-                <p>{plant?.nev}</p>
-                <p>{plant?.ar}</p>
-                <p>{plant?.evelo}</p>
+            <div className='single-container'>
+                <p>Név: {plant?.nev}</p>
+                <p>Ár: {plant?.ar}Ft</p>
+                <p>Évelő?: {plant?.evelo}</p>
                 <input type="text" placeholder={kategoria} onChange={(e) => setKategoria(e.target.value)} />
                 <button onClick={updateCategory}>
                     Frissít

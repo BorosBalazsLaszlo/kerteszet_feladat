@@ -6,12 +6,10 @@ import '../css/main.css';
 
 function AllPlants() {
     const [plants, setPlants] = useState<Plant[]>([]);
-
-    const [nev, setNev] = useState("");
+    const [nev, setNev] = useState('');
     const [ar, setAr] = useState(0);
-    const [kategoria, setKategoria] = useState("");
+    const [kategoria, setKategoria] = useState('');
     const [evelo, setEvelo] = useState(0);
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,57 +24,75 @@ function AllPlants() {
         fetchPlants();
     }, []);
 
-    const viewHandler = (id: number) =>{
+    const viewHandler = (id: number) => {
         navigate(`/novenyek/${id}`);
     };
 
-    const postPlant = async () =>{
-
+    const postPlant = async () => {
         const newPlant = {
-            nev: nev,
-            ar: ar,
-            kategoria: kategoria,
-            evelo: evelo,
+            nev,
+            ar,
+            kategoria,
+            evelo,
         } as Plant;
 
-        try{
-            await apiClient.post("/novenyek", newPlant);
-            alert("Sikeres hozzáadás!");
-        } catch(err:any)
-        {
-            alert("Hiba a hozzáadásnál: " + err);
+        try {
+            await apiClient.post('/novenyek', newPlant);
+            alert('Sikeres hozzáadás!');
+        } catch (err: any) {
+            alert('Hiba a hozzáadásnál: ' + err);
         }
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>Összes növény</h1>
             <table>
-                {plants.map((plant) => (
-                    <tr key={plant.id}>
-                        <td>{plant.nev}</td>
-                        <td>{plant.ar}</td>
-                        <td>{plant.kategoria}</td>
-                        <td>{plant.evelo}</td>
-                        <td>
-                            <button onClick={() =>viewHandler(plant.id)}>Megtekintés</button>
-                        </td>
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th>Ár</th>
+                        <th>Kategória</th>
+                        <th>Évelő</th>
+                        <th>Megtekintés</th>
                     </tr>
-                ))}
+                </thead>
+                <tbody>
+                    {plants.map((plant) => (
+                        <tr key={plant.id}>
+                            <td>{plant.nev}</td>
+                            <td>{plant.ar}</td>
+                            <td>{plant.kategoria}</td>
+                            <td>{plant.evelo ? 'Igen' : 'Nem'}</td>
+                            <td>
+                                <button onClick={() => viewHandler(plant.id)}>Megtekintés</button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
 
-            <div>
-                <h1>Adj hozzá egy növényt!</h1>
-                
-                <div>
-                    <input type="text"  placeholder='Név' onChange={(e) => setNev(e.target.value)}/>
-                    <input type="number" placeholder='Ár' onChange={(e) => setAr(Number(e.target.value))} /> 
-                    <input type="text" placeholder='Kategória'onChange={(e) => setKategoria(e.target.value)} />
-                    <input type="number" placeholder='Évelő? (0 nem, 1 igen)' onChange={(e) => setEvelo(Number(e.target.value))}/>
+            <div className="form-container">
+                <h2>Adj hozzá egy növényt!</h2>
+                <div className="input-container">
+                    <input type="text" placeholder="Név" onChange={(e) => setNev(e.target.value)} />
+                    <input
+                        type="number"
+                        placeholder="Ár"
+                        onChange={(e) => setAr(Number(e.target.value))}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Kategória"
+                        onChange={(e) => setKategoria(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        placeholder="Évelő? (0 nem, 1 igen)"
+                        onChange={(e) => setEvelo(Number(e.target.value))}
+                    />
                 </div>
-                <button onClick={postPlant}>
-                    Hozzáad
-                </button>
+                <button onClick={postPlant}>Hozzáad</button>
             </div>
         </div>
     );
